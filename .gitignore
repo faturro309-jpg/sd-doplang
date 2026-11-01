@@ -19,3 +19,4 @@ yarn-error.log
 /.idea
 /.vscode
 /wordpress_project
+push-to-github.bat
