@@ -1,0 +1,338 @@
+:root {
+    --primary: #FF3C00;
+    /* Super vibrant orange */
+    --primary-glow: rgba(255, 60, 0, 0.5);
+    --secondary: #00D4FF;
+    /* Cyan accent */
+    --dark-bg: #0B0F19;
+    /* Deeper dark */
+    --card-bg: rgba(22, 27, 34, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --text-light: #F8FAFC;
+    --text-dim: #94A3B8;
+    --font-heading: 'Outfit', sans-serif;
+    --font-body: 'Inter', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--dark-bg);
+    color: var(--text-light);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+h1,
+h2,
+h3 {
+    font-family: var(--font-heading);
+    font-weight: 800;
+}
+
+a {
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+/* Utilities */
+.container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 32px;
+    border-radius: 50px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary), #FF6B00);
+    color: white;
+    box-shadow: 0 10px 30px -10px var(--primary-glow);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 20px 40px -10px var(--primary-glow);
+}
+
+.btn-outline {
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+.btn-outline:hover {
+    border-color: white;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* Navbar */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background: rgba(11, 15, 25, 0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--glass-border);
+    transition: 0.3s;
+}
+
+.nav-container {
+    height: 90px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: white;
+    text-shadow: 0 0 20px var(--primary-glow);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo i {
+    color: var(--primary);
+}
+
+.nav-links {
+    display: flex;
+    gap: 40px;
+}
+
+.nav-links a {
+    color: var(--text-dim);
+    font-weight: 600;
+    font-size: 0.95rem;
+    position: relative;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: white;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--primary);
+    transition: 0.3s;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* Hero Section with Animation */
+.hero {
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&q=80&w=2000') center/cover;
+    z-index: -1;
+    animation: zoomEffect 20s infinite alternate;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(11, 15, 25, 0.4), rgba(11, 15, 25, 0.95));
+    z-index: -1;
+}
+
+@keyframes zoomEffect {
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(1.15);
+    }
+}
+
+.hero-content h1 {
+    font-size: 5rem;
+    letter-spacing: -2px;
+    margin-bottom: 20px;
+    background: linear-gradient(to bottom right, #fff, #94a3b8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.1));
+}
+
+.hero-content p {
+    font-size: 1.4rem;
+    color: var(--text-dim);
+    margin-bottom: 40px;
+    max-width: 700px;
+    margin-inline: auto;
+}
+
+/* Services Cards (Glassmorphism) */
+.section-title {
+    font-size: 3rem;
+    margin-bottom: 60px;
+    text-align: center;
+    position: relative;
+}
+
+.section-title span {
+    color: var(--primary);
+}
+
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 40px;
+}
+
+.card {
+    background: var(--card-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    position: relative;
+}
+
+.card:hover {
+    transform: translateY(-15px);
+    border-color: var(--primary);
+    box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.5);
+}
+
+.card-img-wrapper {
+    height: 250px;
+    overflow: hidden;
+    position: relative;
+}
+
+.card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.card:hover .card-img {
+    transform: scale(1.1);
+}
+
+.card-body {
+    padding: 30px;
+    position: relative;
+    z-index: 2;
+}
+
+.card-title {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    color: white;
+}
+
+.card-price {
+    display: block;
+    font-size: 1.4rem;
+    color: var(--secondary);
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
+}
+
+/* Floating Badges */
+.badge-fixed {
+    position: absolute;
+    top: 110px;
+    right: 20px;
+    z-index: 100;
+    background: rgba(255, 60, 0, 0.9);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(255, 60, 0, 0.3);
+    animation: float 3s infinite ease-in-out;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Table */
+.table th {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* Emergency Button Pulse */
+.btn-emergency {
+    background: #ef4444;
+    color: white;
+    animation: pulsate 1.5s infinite;
+}
+
+@keyframes pulsate {
+    0% {
+        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+    }
+
+    70% {
+        box-shadow: 0 0 0 20px rgba(239, 68, 68, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+    }
+}
